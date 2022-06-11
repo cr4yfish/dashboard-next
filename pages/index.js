@@ -28,7 +28,7 @@ export default function Home() {
     {
       key: "3",
       name: "Work Tracker",
-      port: 30006
+      port: 30002
     }
   ]
 
