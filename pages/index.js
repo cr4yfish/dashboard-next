@@ -38,13 +38,13 @@ export default function Home() {
     switch(columnKey) {
       case 'name':
         return (
-          <Link href={`/`} onClick={`javascript:event.target.port=${row.port}`}>
+          <Link href={`http://192.168.0.100:${row.port}`} target="_blank">
             {cellValue}
           </Link>
         )
       case 'port':
         return (
-          cellValue
+          <>{cellValue}</>
         )
     }
   }
@@ -70,7 +70,9 @@ export default function Home() {
           <Table.Body items={rows}>
             {(item) => (
               <Table.Row key={item.key}>
-                {(columnKey) => <Table.Cell>{item[columnKey]}</Table.Cell>}
+                {(columnKey) => (
+                  <Table.Cell>{renderCell(item, columnKey)}</Table.Cell>
+                )}
               </Table.Row>
             )}
           </Table.Body>
