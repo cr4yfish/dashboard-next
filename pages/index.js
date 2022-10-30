@@ -18,6 +18,12 @@ const Home = ({ data }) => {
   const [isLoading, setisLoading] = React.useState(false);
   const [isModalVisible, setIsModalVisible] = React.useState(false);
   const [isOpened, setIsOpened] = React.useState(false);
+  const [hostname, setHostname] = React.useState("");
+
+  // sets hostname for other functions to use
+  React.useEffect(() => {
+    setHostname(location.hostname);
+  }, []);
 
   const columns = [
     {
@@ -60,7 +66,7 @@ const Home = ({ data }) => {
     switch(columnKey) {
       case 'name':
         return (
-          <Link href={`${window.location.protocol}//${window.location.hostname}:${row.port}`} target="_blank">
+          <Link href={`http://${hostname}:${row.port}`} target="_blank">
             {cellValue}
           </Link>
         )
