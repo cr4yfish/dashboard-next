@@ -8,6 +8,7 @@ import * as React from 'react';
 import { MdEdit, MdAdd } from "react-icons/md";
 
 import MakeNewModal from '../components/MakeNewModal';
+import DynamicLink from '../components/DynamicLink';
 
 const Home = ({ data }) => {
   const [form, setForm] = React.useState({
@@ -18,12 +19,6 @@ const Home = ({ data }) => {
   const [isLoading, setisLoading] = React.useState(false);
   const [isModalVisible, setIsModalVisible] = React.useState(false);
   const [isOpened, setIsOpened] = React.useState(false);
-  const [hostname, setHostname] = React.useState("");
-
-  // sets hostname for other functions to use
-  React.useEffect(() => {
-    setHostname(location.hostname);
-  }, []);
 
   const columns = [
     {
@@ -66,9 +61,7 @@ const Home = ({ data }) => {
     switch(columnKey) {
       case 'name':
         return (
-          <Link href={`http://${hostname}:${row.port}`} target="_blank">
-            {cellValue}
-          </Link>
+          <DynamicLink name={cellValue} port={row.port} />
         )
       case 'port':
         return (
@@ -116,7 +109,7 @@ const Home = ({ data }) => {
             bottom: "40px"
           }}
         >{isLoading ? <Loading /> : <MdAdd size={30} />}</Button>
-      
+
       <Container>
         <Spacer />
         <Table
