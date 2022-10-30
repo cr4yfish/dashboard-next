@@ -60,7 +60,7 @@ const Home = ({ data }) => {
     switch(columnKey) {
       case 'name':
         return (
-          <Link href={`http://192.168.0.100:${row.port}`} target="_blank">
+          <Link href={`${window.location.protocol}//${window.location.hostname}:${row.port}`} target="_blank">
             {cellValue}
           </Link>
         )
